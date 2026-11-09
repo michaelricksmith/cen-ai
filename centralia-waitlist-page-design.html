@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<link rel="icon" href="data:," />
+<title>Centralia Blackwell — Follow the Build | Centralia Cognition Labs</title>
+<meta name="description" content="Centralia Blackwell is the language model from Centralia Cognition Labs: 1B parameters, trained from scratch, 82.27 percent trained. Follow the Blackwell build, follow the run, or request the investor and grant briefing." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{ color-scheme: dark; }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none !important} }
+body{margin:0;background:#15141F;color:#F4EFE6;font-family:"Public Sans",system-ui,sans-serif;line-height:1.55}
+.site{background:#15141F;color:#F4EFE6;position:relative;overflow:hidden;max-width:1180px;margin:0 auto;min-height:100vh}
+.site .rail{position:absolute;left:0;top:0;bottom:0;width:34px;display:flex;flex-direction:column;align-items:center;padding:18px 0;gap:0}
+.site .rail i{width:11px;height:11px;border-radius:50%;display:block;margin:7px 0}
+.site .rail:before{content:"";position:absolute;top:24px;bottom:24px;width:2px;background:#35324a;left:50%;margin-left:-1px}
+.site-inner{padding:26px 26px 40px 56px}
+@media(max-width:640px){.site-inner{padding:22px 16px 32px 48px}}
+.site nav{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;font-weight:700;position:relative;z-index:2;flex-wrap:wrap}
+.wordmark{font-family:"Space Grotesk",sans-serif;letter-spacing:.18em;text-transform:uppercase;font-size:17px}
+.nav-links a{color:inherit;text-decoration:none}
+.nav-links a:hover,.nav-links a:focus-visible{color:#F5B840}
+.state-label[id]{scroll-margin-top:16px}
+.wordmark small{display:block;font-size:9.5px;letter-spacing:.34em;color:#a49dc0;margin-top:2px}
+.hero-grid2{display:grid;grid-template-columns:1.25fr .75fr;gap:10px;align-items:end;margin-top:8px;position:relative}
+@media(max-width:760px){.hero-grid2{grid-template-columns:1fr}}
+.hero-grid2 .ringwrap{position:relative;margin-right:-70px;margin-bottom:-30px;text-align:right}
+.hero-grid2 .ringwrap img{width:min(300px,62vw);height:auto;opacity:.96}
+@media(max-width:760px){.hero-grid2 .ringwrap{margin:0;text-align:left}.hero-grid2 .ringwrap img{width:190px}}
+.model-lockup{margin-top:30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.model-lockup .dot{width:12px;height:12px;border-radius:50%;background:#F5B840;flex:none}
+.model-lockup-name{font-family:"Space Grotesk",sans-serif;font-size:clamp(21px,2.8vw,28px);font-weight:700;letter-spacing:.01em;line-height:1.1}
+.model-lockup-name .amber{color:#F5B840}
+.model-lockup-meta{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#a49dc0}
+.site h1{font-family:"Space Grotesk",sans-serif;font-size:clamp(32px,4.6vw,50px);line-height:.97;margin:12px 0 14px;letter-spacing:-.01em;font-weight:700}
+.site h1 .amber{color:#F5B840}.site h1 .rose{color:#D06A8E}
+.site .sub{color:#c9c3d6;max-width:560px;font-size:16px;margin:0}
+.tagline{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#F5B840;margin-top:16px}
+.toggle{display:inline-flex;background:#232133;border:1px solid #35324a;border-radius:999px;padding:3px;margin-top:20px;flex-wrap:wrap}
+.toggle button{border:none;background:transparent;padding:7px 13px;border-radius:999px;font-weight:700;cursor:pointer;font-size:13px;color:#ddd8ea;font:inherit}
+.toggle button.active{background:#F5B840;color:#15141F}
+.toggle-copy{font-size:14px;color:#b6b0ca;margin:10px 0 0;max-width:560px}
+.form-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;position:relative;z-index:2}
+.form-row input,.form-row select{flex:1;min-width:170px;padding:13px 14px;border:1px solid #35324a;border-radius:10px;background:#1e1c2e;font:inherit;font-size:14px;color:#F4EFE6}
+.form-row button{padding:13px 18px;border-radius:10px;border:none;background:#F5B840;color:#15141F;font-weight:800;cursor:pointer;font:inherit;font-size:14px}
+.form-row button:disabled{opacity:.6;cursor:wait}
+.form-status{flex-basis:100%;margin:2px 0 0;font-size:14px;color:#F5B840;font-weight:600}
+.form-status.error{color:#e88ca0}
+.state-label{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;margin:38px 0 12px;display:flex;align-items:center;gap:10px}
+.state-label i{width:12px;height:12px;border-radius:50%;display:inline-block;flex:none}
+.state-label:after{content:"";flex:1;height:1px;background:#35324a}
+.ledger{display:grid;grid-template-columns:.85fr 1.15fr;gap:22px;align-items:start}
+@media(max-width:760px){.ledger{grid-template-columns:1fr}}
+.ledger figure{margin:0}
+.ledger figure img{width:100%;max-width:340px;border-radius:12px;border:1px solid #35324a;display:block}
+.ledger figcaption{font-size:12.5px;color:#9d97b0;margin-top:8px;max-width:340px}
+.run-stats{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid #35324a}
+@media(max-width:480px){.run-stats{grid-template-columns:1fr}}
+.run-stats div{padding:11px 12px 11px 0;border-bottom:1px solid #35324a}
+.run-stats b{font-family:"IBM Plex Mono",monospace;font-size:17px;display:block;color:#fff}
+.run-stats span{font-size:11.5px;color:#9d97b0;text-transform:uppercase;letter-spacing:.07em}
+.runbar-note{font-size:13px;color:#9d97b0;margin:10px 0 0}
+.livebar{display:flex;gap:3px;margin-top:14px}
+.livebar .cell{flex:1;height:14px;background:#232133;border-radius:4px;overflow:hidden}
+.livebar .cell i{display:block;height:100%}
+.live-meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:#9d97b0;margin-top:7px}
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media(max-width:640px){.ladder{grid-template-columns:1fr 1fr}}
+.stepbox{border:1px solid #35324a;border-radius:12px;padding:13px;background:#1a1828}
+.stepbox b{font-family:"Space Grotesk",sans-serif;font-size:21px;display:block}
+.stepbox span{font-size:12.5px;color:#b6b0ca;display:block;margin-top:3px}
+.stepbox .gate{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;margin-top:9px;display:inline-block;padding:4px 8px;border-radius:999px}
+.gate.done{background:#2B2A8C;color:#dcd8ff}.gate.now{background:#F5B840;color:#15141F}.gate.next{background:transparent;border:1px solid #4a4666;color:#a49dc0}
+.rows{border-top:1px solid #35324a}
+.rows .row{display:grid;grid-template-columns:170px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid #35324a}
+@media(max-width:640px){.rows .row{grid-template-columns:1fr;gap:4px}}
+.rows .row b{font-size:14.5px}
+.rows .row p{margin:0;font-size:14px;color:#c9c3d6}
+.tl-note{margin-top:18px;font-size:14.5px;color:#ddd8ea;max-width:680px}
+.tl-note strong{color:#F5B840}
+.itl{margin-top:26px}
+.itl-track{position:relative;height:16px;border-radius:999px;background:#232133;cursor:pointer;touch-action:none;outline:none}
+.itl-track:focus-visible{box-shadow:0 0 0 2px #15141F,0 0 0 4px #F5B840}
+.itl-fill{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:linear-gradient(90deg,#2B2A8C,#6338C4,#8E44D6,#B44FB4,#D06A8E,#CE6B4A,#E8834F,#F09A3E,#F5B840);transition:width .18s ease;pointer-events:none}
+.itl-dot{position:absolute;top:50%;width:15px;height:15px;border-radius:50%;border:3px solid #15141F;transform:translate(-50%,-50%);transition:transform .15s ease;pointer-events:none}
+.itl-dot.active{transform:translate(-50%,-50%) scale(1.5)}
+.itl-dot.today{box-shadow:0 0 0 2px #F5B840}
+.itl-ends{display:flex;justify-content:space-between;gap:10px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:#9d97b0;margin-top:8px;letter-spacing:.04em}
+.itl-panel{margin-top:16px;border:1px solid #35324a;border-radius:12px;background:#1a1828;padding:16px}
+.itl-panel time{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#F5B840}
+.itl-panel h3{font-family:"Space Grotesk",sans-serif;font-size:19px;margin:6px 0 4px}
+.itl-panel p{margin:0;font-size:14px;color:#c9c3d6;max-width:640px}
+.itl-metrics{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.itl-metrics span{font-family:"IBM Plex Mono",monospace;font-size:12px;background:#232133;border:1px solid #35324a;border-radius:999px;padding:5px 11px;color:#F4EFE6}
+.itl-metrics span b{color:#F5B840;font-weight:600}
+.itl-hint{font-size:12.5px;color:#9d97b0;margin:10px 0 0}
+@media (prefers-reduced-motion: reduce){.itl-fill,.itl-dot{transition:none}}
+.trail{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.trail a{border:1px solid #35324a;border-radius:999px;padding:9px 14px;font-size:13.5px;font-weight:700;color:#F4EFE6;text-decoration:none;background:#1e1c2e}
+.trail a:hover{border-color:#F5B840;color:#F5B840}
+.ring-stage{position:relative}
+.ring-stage svg{width:min(300px,62vw);height:auto;display:block}
+@media(max-width:760px){.ring-stage svg{width:190px}}
+.ring-stage .state{transform-box:fill-box;transform-origin:center;transition:transform .25s ease, filter .25s ease;cursor:pointer}
+.ring-stage .state.active{transform:scale(1.28);filter:drop-shadow(0 0 14px rgba(255,255,255,.45))}
+.ring-readout{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-top:10px;color:#b6b0ca;min-height:18px;text-align:right;margin-right:76px}
+@media(max-width:760px){.ring-readout{text-align:left;margin-right:0}}
+.ring-hint{font-size:12px;color:#9d97b0;margin-top:4px;text-align:right;margin-right:76px}
+@media(max-width:760px){.ring-hint{text-align:left;margin-right:0}}
+@media (prefers-reduced-motion: reduce){.ring-stage .state{transition:none}}
+.toast{position:fixed;top:14px;left:50%;transform:translateX(-50%) translateY(-80px);background:#F5B840;color:#15141F;padding:10px 16px;border-radius:999px;font-size:13.5px;font-weight:700;transition:.25s;z-index:30;max-width:92vw;text-align:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.footnote{font-size:12.5px;color:#9d97b0;margin:34px 0 0;max-width:760px}
+</style>
+</head>
+<body>
+<div class="toast" id="toast" role="status" aria-live="polite">You are following the build.</div>
+
+<main class="site" id="top">
+  <div class="rail" aria-hidden="true"><i style="background:#2B2A8C"></i><i style="background:#6338C4"></i><i style="background:#8E44D6"></i><i style="background:#B44FB4"></i><i style="background:#D06A8E"></i><i style="background:#CE6B4A"></i><i style="background:#E8834F"></i><i style="background:#F09A3E"></i><i style="background:#F5B840"></i></div>
+  <div class="site-inner">
+    <nav><span class="wordmark">Centralia<small>Cognition Labs</small></span><span class="nav-links"><a href="#top">Centralia Blackwell</a> · <a href="#run">The Run</a> · <a href="#safety">Safety</a> · <a href="#timeline">Timeline</a></span></nav>
+
+    <div class="hero-grid2">
+      <div>
+        <div class="model-lockup"><span class="dot" aria-hidden="true"></span><span class="model-lockup-name">Centralia <span class="amber">Blackwell</span></span><span class="model-lockup-meta">The model · 1B parameters · Training now</span></div>
+        <h1>A model for <span class="rose">everyone,</span> <span class="amber">built from scratch.</span></h1>
+        <p class="sub">Blackwell is Centralia&rsquo;s model: the name you will know the work by. Centralia Cognition Labs is an independent lab training Blackwell from scratch, for people, not for big labs or experts only. Step by step, in public, with the numbers on the page. Follow the build to try Blackwell, follow the run, or open the investor and grant briefing.</p>
+        <div class="tagline">Endless learning · Continual improvement</div>
+      </div>
+      <div class="ringwrap">
+        <div class="ring-stage" id="ring-stage">
+          <svg id="ring-svg" viewBox="0 0 1200 1200" role="img" aria-label="Interactive Spectrum Cycle ring: move your cursor around it or tap a state">
+            <g id="ring-rotor">
+              <circle cx="600" cy="600" r="380" fill="none" stroke="#4E4488" stroke-width="40"/>
+              <circle class="state" data-name="State 1 · Indigo" data-hex="#2B2A8C" cx="600" cy="220" r="92" fill="#2B2A8C"/>
+              <circle class="state" data-name="State 2 · Violet" data-hex="#6338C4" cx="844.3" cy="308.9" r="92" fill="#6338C4"/>
+              <circle class="state" data-name="State 3 · Bright Violet" data-hex="#8E44D6" cx="974.2" cy="534" r="92" fill="#8E44D6"/>
+              <circle class="state" data-name="State 4 · Magenta" data-hex="#B44FB4" cx="929.1" cy="790" r="92" fill="#B44FB4"/>
+              <circle class="state" data-name="State 5 · Rose" data-hex="#D06A8E" cx="730" cy="957.1" r="92" fill="#D06A8E"/>
+              <circle class="state" data-name="State 6 · Rust Clay" data-hex="#CE6B4A" cx="470" cy="957.1" r="92" fill="#CE6B4A"/>
+              <circle class="state" data-name="State 7 · Salmon" data-hex="#E8834F" cx="270.9" cy="790" r="92" fill="#E8834F"/>
+              <circle class="state" data-name="State 8 · Tangerine" data-hex="#F09A3E" cx="225.8" cy="534" r="92" fill="#F09A3E"/>
+              <circle class="state" data-name="State 9 · Amber" data-hex="#F5B840" cx="355.7" cy="308.9" r="92" fill="#F5B840"/>
+            </g>
+          </svg>
+          <div class="ring-readout" id="ring-readout">The cycle, live · <b>indigo to amber</b></div>
+          <div class="ring-hint">Move your cursor around the ring, scroll, or tap a state</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toggle" data-toggle><button type="button" class="active">Early Access</button><button type="button">Investor</button><button type="button">Grant Reviewer</button></div>
+    <p class="toggle-copy">Be first to try Blackwell and follow each training step as it lands.</p>
+    <form class="form-row waitlist-form" action="https://forms.zohopublic.com/michaelcentraliaco1/form/CentraliaWaitlist/formperma/WWT3hWEBoMlRnFcb2uXY4ES_d-rgwDzbeaKMED0mI5s/htmlRecords/submit" method="POST" enctype="multipart/form-data" target="zoho-submit-target">
+      <input type="hidden" name="zf_referrer_name" value="">
+      <input type="hidden" name="zf_redirect_url" value="">
+      <input type="hidden" name="zc_gad" value="">
+      <input type="email" name="Email" placeholder="you@example.com" aria-label="Email" required>
+      <select name="Dropdown" aria-label="Interest">
+        <option>Early Access</option>
+        <option>Investor Briefing</option>
+        <option>Grant and Funding</option>
+        <option>Research Partner</option>
+      </select>
+      <button type="submit">Follow the build</button>
+      <p class="form-status" role="status" aria-live="polite" hidden></p>
+    </form>
+
+    <div class="state-label" id="run"><i style="background:#6338C4"></i>State 02 · The Run Record — Blackwell, latest verified update</div>
+    <div class="ledger">
+      <div>
+        <div class="run-stats">
+          <div><b id="live-pct">82.27%</b><span>Of training done</span></div>
+          <div><b id="live-step">15,692 / 19,074</b><span>Step</span></div>
+          <div><b id="live-tokens">8.228B / 10B</b><span>Tokens this run</span></div>
+          <div><b id="live-loss">3.2083</b><span>Loss, latest reading, Nov 9</span></div>
+          <div><b>1B parameters</b><span>Blackwell, trained from scratch</span></div>
+          <div><b>Wed, Nov 11, 2026</b><span>Expected finish</span></div>
+          <div><b>64,000</b><span>Custom BPE tokenizer vocab</span></div>
+          <div><b>19.5B tokens</b><span>Data diet prepared for Blackwell</span></div>
+          <div><b>Hand built</b><span>PyTorch training harness</span></div>
+          <div><b>9,420 tok/s</b><span>Throughput at last reading</span></div>
+        </div>
+        <div class="livebar" id="livebar" role="img" aria-label="Training progress bar in Spectrum Cycle colors, currently 82.27 percent">
+          <div class="cell"><i style="background:#2B2A8C;width:100%"></i></div><div class="cell"><i style="background:#6338C4;width:100%"></i></div><div class="cell"><i style="background:#8E44D6;width:100%"></i></div><div class="cell"><i style="background:#B44FB4;width:100%"></i></div><div class="cell"><i style="background:#D06A8E;width:100%"></i></div><div class="cell"><i style="background:#CE6B4A;width:100%"></i></div><div class="cell"><i style="background:#E8834F;width:100%"></i></div><div class="cell"><i style="background:#F09A3E;width:40.4%"></i></div><div class="cell"><i style="background:#F5B840;width:0%"></i></div>
+        </div>
+        <div class="live-meta"><span id="live-date">LATEST VERIFIED UPDATE · NOV 9, 2026 · ACTUAL RUN RECORD</span><span>100% · FINISH ~NOV 11</span></div>
+        <p class="runbar-note">This bar is set to the latest verified run record, November 9, 2026. It moves when a new verified reading is published.</p>
+      </div>
+    </div>
+
+    <div class="state-label"><i style="background:#B44FB4"></i>State 04 · The Ladder — each size must earn the next</div>
+    <div class="ladder">
+      <div class="stepbox"><b>10M · Blackwell</b><span>First small run to prove the full system end to end</span><span class="gate done">Gate passed</span></div>
+      <div class="stepbox"><b>125M · Blackwell</b><span>Second step, full training and evaluation at small scale</span><span class="gate done">Gate passed</span></div>
+      <div class="stepbox"><b>1B · Blackwell</b><span>Training now, <span id="ladder-pct">82.3 percent</span>, finishing November 11</span><span class="gate now">In training</span></div>
+      <div class="stepbox"><b>3B · Blackwell</b><span>The next Blackwell, gated on the 1B finishing and its eval results</span><span class="gate next">Gated · Next</span></div>
+    </div>
+    <p style="font-size:13.5px;color:#b6b0ca;margin:12px 0 0">Honest eval gates at each step: a larger Blackwell is only trained when the smaller one finishes and its evaluations say the system is ready. Results are reported as measured, including where they fall short.</p>
+
+    <div class="state-label" id="safety"><i style="background:#CE6B4A"></i>State 06 · Safety, built in while it trains</div>
+    <div class="rows">
+      <div class="row"><b>Safety messages</b><p>Safety guidance is part of Blackwell&rsquo;s training material itself, so expected behavior is learned during training, not patched on afterward.</p></div>
+      <div class="row"><b>Eight model principles</b><p>Blackwell is built around eight principles covering truth, harm, fairness, and accountability, the standards its answers are measured against.</p></div>
+      <div class="row"><b>File handling</b><p>Blackwell is being taught to work with documents: read a file, summarize it, and work on its contents, with the same safety principles applied to what it reads and writes.</p></div>
+    </div>
+
+    <div class="state-label"><i style="background:#E8834F"></i>State 07 · Built in public — follow the trail</div>
+    <p style="font-size:14px;color:#c9c3d6;max-width:640px;margin:0">The build has been shared openly all along, as it happened. Every daily Blackwell reading now lives on the interactive timeline below, one metric entry per day instead of a stack of graphics. Follow the trail, or support the next step:</p>
+    <div class="trail">
+      <a href="https://www.threads.com/@mikesmith.tech" target="_blank" rel="noopener">Threads · @mikesmith.tech ↗</a>
+      <a href="https://www.instagram.com/mikesmith.tech" target="_blank" rel="noopener">Instagram · @mikesmith.tech ↗</a>
+      <a href="https://mike-smith.tech" target="_blank" rel="noopener">Website · mike-smith.tech ↗</a>
+      <a href="https://ko-fi.com/centraliacognitionlabs" target="_blank" rel="noopener">Ko-fi · Support Centralia ↗</a>
+    </div>
+
+    <div class="state-label" id="timeline"><i style="background:#F09A3E"></i>State 08 · Five months, conception to production — the daily record</div>
+    <div class="itl" id="itl">
+      <div class="itl-track" id="itl-track" role="slider" tabindex="0" aria-label="Interactive timeline, conception to Blackwell finish. Use the arrow keys, or slide your mouse or finger along the bar, to see what happened at each point." aria-valuemin="0" aria-valuemax="12" aria-valuenow="11" aria-valuetext="Nov 9, 2026 · Past 82 percent">
+        <div class="itl-fill" id="itl-fill"></div>
+      </div>
+      <div class="itl-ends"><span>CONCEPTION · ABOUT FIVE MONTHS AGO</span><span>NOV 11, 2026 · BLACKWELL FINISHES</span></div>
+      <div class="itl-panel" aria-live="polite">
+        <time id="itl-date">Mon · Nov 9, 2026 · Latest verified update</time>
+        <h3 id="itl-title">Past 82 percent</h3>
+        <p id="itl-desc">The current record, from the verified 8:11 AM PST capture. Checkpoint 15,500 saved at 04:52 PST.</p>
+        <div class="itl-metrics" id="itl-metrics"><span>Training <b>82.27%</b></span><span>Step <b>15,692 / 19,074</b></span><span>Tokens <b>8.228B / 10B</b></span><span>Loss <b>3.2083</b></span><span>Throughput <b>9,420 tok/s</b></span></div>
+      </div>
+      <p class="itl-hint">Slide your mouse or finger along the bar, tap a point, or focus it and use the arrow keys. Each stop is one day on the record. The ringed point is the latest verified update; the bar fills to today and the last stretch, to the November 11 finish, is still ahead.</p>
+    </div>
+    <p class="tl-note">Every part of this was built by <strong>one solo founder</strong>: the tokenizer, the data, the training system, the safety work, and the public updates. That is why five months is the honest timeline, and it is exactly what funding changes. <strong>Funding buys H100 compute and help</strong>, so the 3B Blackwell step and everything after it moves at the speed of the work, not the speed of one person and one machine.</p>
+
+    <div class="state-label"><i style="background:#F5B840"></i>State 09 · The founder — a note in the log</div>
+    <div style="display:grid;grid-template-columns:1.25fr .75fr;gap:22px;align-items:start" class="ledger">
+      <div>
+        <p style="font-family:'Newsreader',serif;font-size:clamp(19px,2.4vw,24px);line-height:1.45;color:#F4EFE6;margin:0">I am Michael Smith. I taught myself this work, and I have ten years of building behind me. I did not wait for a lab to hire me or a team to hand me the hard parts. I built the lab.</p>
+        <p style="font-size:15px;color:#c9c3d6;margin:14px 0 0">Nobody handed me an education in this either. I learned it myself over ten years, through books, Instagram, Twitter, and YouTube, lesson by lesson, usually after work. School came later: I am a working adult now in my third year of a BS in Business Information Systems, with a career across several levels of technology behind me. I have also done contract work evaluating and training frontier AI models, the kind of work where you learn exactly how the best models are judged, and where they fall short.</p>
+        <p style="font-size:15px;color:#c9c3d6;margin:12px 0 0">Centralia is mine, built solo, from scratch: the custom tokenizer, the 19.5 billion token data diet, the training harness I wrote by hand, and Blackwell, the 1 billion parameter model that is <span id="founder-pct">82.3 percent</span> trained right now. Nobody handed me a stack. I am the stack.</p>
+        <p style="font-size:15px;color:#c9c3d6;margin:12px 0 0">I measure everything and I post the numbers as they are, good or bad. That is the whole pitch: I ship, I measure honestly, and I keep going. What comes next is simple. Finish Blackwell. Run the eval gates and publish what they say. Add the safety work and file handling. Then scale to the 3B Blackwell.</p>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;color:#F5B840;margin:16px 0 0">— MICHAEL SMITH, FOUNDER, CENTRALIA COGNITION LABS</p>
+      </div>
+      <div class="rows" style="border-top:none">
+        <div class="row" style="grid-template-columns:1fr;gap:3px;padding-top:0"><b>Built solo</b><p>Tokenizer · 19.5B token data diet · hand built training harness · Blackwell, 1B, training now</p></div>
+        <div class="row" style="grid-template-columns:1fr;gap:3px"><b>Learned</b><p>Self taught over ten years through books, Instagram, Twitter, and YouTube · a working adult with a career across several levels of technology</p></div>
+        <div class="row" style="grid-template-columns:1fr;gap:3px"><b>Studying</b><p>BS in Business Information Systems, Grand Canyon University, third year, started September 2024 · Google Data Analytics certification, completed October 2025</p></div>
+        <div class="row" style="grid-template-columns:1fr;gap:3px"><b>Contract work</b><p>Evaluating and training frontier AI models</p></div>
+        <div class="row" style="grid-template-columns:1fr;gap:3px"><b>Also founded</b><p>Syndero and Code Sonar</p></div>
+        <div class="row" style="grid-template-columns:1fr;gap:3px"><b>Next</b><p>Finish Blackwell · eval gates · safety and file handling · then the 3B Blackwell</p></div>
+      </div>
+    </div>
+
+    <div class="state-label"><i style="background:#F5B840"></i>Complete the cycle · Join at amber</div>
+    <p style="color:#c9c3d6;max-width:600px;margin:0">The cycle ends where it warms: amber, follow the build. Early access to Blackwell, investor briefings, grant and funding conversations, and research partnerships all start here.</p>
+    <form class="form-row waitlist-form" action="https://forms.zohopublic.com/michaelcentraliaco1/form/CentraliaWaitlist/formperma/WWT3hWEBoMlRnFcb2uXY4ES_d-rgwDzbeaKMED0mI5s/htmlRecords/submit" method="POST" enctype="multipart/form-data" target="zoho-submit-target">
+      <input type="hidden" name="zf_referrer_name" value="">
+      <input type="hidden" name="zf_redirect_url" value="">
+      <input type="hidden" name="zc_gad" value="">
+      <input type="email" name="Email" placeholder="you@example.com" aria-label="Email" required>
+      <select name="Dropdown" aria-label="Interest">
+        <option>Early Access</option>
+        <option>Investor Briefing</option>
+        <option>Grant and Funding</option>
+        <option>Research Partner</option>
+      </select>
+      <button type="submit">Follow the build</button>
+      <p class="form-status" role="status" aria-live="polite" hidden></p>
+    </form>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#9d97b0;margin:16px 0 0">CENTRALIA BLACKWELL · CENTRALIACOGNITIONLABS.COM · INVESTOR AND GRANT CONTACT: MICHAEL@CENTRALIACOGNITIONLABS.COM</p>
+
+    <p class="footnote">All Blackwell figures on this page come from one verified daily log, the same entries the interactive timeline above reads: the latest is November 9, 2026, step 15,692 of 19,074, 82.27 percent, 8.228B of 10B tokens, loss 3.2083, throughput 9,420 tok/s, expected finish Wednesday, November 11, 2026. Earlier daily entries carry their own verified readings (the November 2 monitor, the November 5 halfway mark, the November 6, November 7, and November 8 readings), so the run stats, the progress bar, and the timeline can never disagree. Timeline dates are the verified milestones listed in the log; the conception point is deliberately undated, about five months before November 2026.</p>
+  </div>
+</main>
+
+<iframe name="zoho-submit-target" id="zoho-submit-target" title="Follow the build signup submission" style="display:none" aria-hidden="true"></iframe>
+
+<script>
+(function(){
+  var toast=document.getElementById('toast'), toastTimer=null;
+  function showToast(msg){ toast.textContent=msg; toast.classList.add('show'); if(toastTimer) clearTimeout(toastTimer); toastTimer=setTimeout(function(){toast.classList.remove('show')},3200); }
+
+  /* ---------- Audience toggle syncs the hero form's interest ---------- */
+  var copyByAudience={
+    'Early Access':'Be first to try Blackwell and follow each training step as it lands.',
+    'Investor':'Get the Blackwell investor briefing: the run record, the ladder, and what the 3B Blackwell step needs.',
+    'Grant Reviewer':'Get the Blackwell grant and funding packet: run record, data diet, safety work, and the five month timeline.'
+  };
+  document.querySelectorAll('[data-toggle]').forEach(function(toggle){
+    var parent=toggle.parentElement;
+    var copy=parent.querySelector('.toggle-copy');
+    toggle.querySelectorAll('button').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        toggle.querySelectorAll('button').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');
+        if(copy) copy.textContent=copyByAudience[btn.textContent]||copy.textContent;
+        var form=parent.querySelector('form.waitlist-form');
+        if(form){ var sel=form.querySelector('select[name="Dropdown"]'); if(sel){ sel.value = btn.textContent==='Investor' ? 'Investor Briefing' : (btn.textContent==='Grant Reviewer' ? 'Grant and Funding' : 'Early Access'); } }
+      });
+    });
+  });
+
+  /* ---------- The daily log: the one record everything on this page reads ----------
+     DAILY UPDATE: to publish a new day, add ONE entry to DAILY_LOG below
+     (copy the shape of the Nov 7 entry) with that day's verified reading,
+     keeping entries in date order. The run stats, the progress bar, every
+     percent mentioned on the page, and the interactive timeline all rebuild
+     from the newest entry carrying a percent, so nothing can disagree and
+     no graphic needs regenerating. Metrics a day does not have are simply
+     left out of that entry. Nothing here is estimated: the Nov 11 entry is
+     the expected finish, marked projected, and carries no reading. */
+  var DAILY_LOG=[
+    { date:'About five months ago', title:'Conception', desc:'The idea and the early work begin, months before any repo exists.' },
+    { date:'Fri · Oct 16, 2026', title:'Lab founded', desc:'Centralia Cognition Labs founded and the repo created.' },
+    { date:'Mon · Oct 19, 2026', title:'Spectrum Cycle chosen', desc:'The nine state ring becomes the lab identity.' },
+    { date:'Mon · Oct 26, 2026', title:'Building in public begins', desc:'Progress posted openly as the work happens.' },
+    { date:'Thu · Oct 29, 2026', title:'Blackwell training launches', desc:'The 1B run starts, on the hand built PyTorch harness and the custom 64,000 vocab BPE tokenizer.', percent:0, step:0, totalSteps:19074, tokensDone:0, tokensTotal:10 },
+    { date:'Sat · Oct 31, 2026', title:'1 billion tokens crossed', desc:'First billion tokens of the run complete.', tokensDone:1, tokensTotal:10 },
+    { date:'Mon · Nov 2, 2026', title:'The live monitor', desc:'The run as telemetry sees it, captured by the PC telemetry uploader.', percent:28.42, step:5420, totalSteps:19074, loss:'3.5759' },
+    { date:'Thu · Nov 5, 2026', title:'Halfway', desc:'Blackwell passes the halfway mark, posted the day it happened.', percent:52.05, step:9928, totalSteps:19074, loss:'2.6671' },
+    { date:'Fri · Nov 6, 2026', title:'Past 60 percent', desc:'The run crosses three fifths on the road to the November 11 finish.', percent:60.09, step:11461, totalSteps:19074, tokensDone:6.009, tokensTotal:10, loss:'2.9099' },
+    { date:'Sat · Nov 7, 2026', title:'Past 68 percent', desc:'The run passes 68 percent, from the verified 1:47 PM PST capture.', percent:68.7, step:13112, totalSteps:19074, tokensDone:6.875, tokensTotal:10, loss:'2.9392', throughput:'9,501 tok/s' },
+    { date:'Sun · Nov 8, 2026', title:'Past 74 percent', desc:'From the verified 8:06 AM PST capture. Checkpoint 14,000 saved at 04:10 PST.', percent:74.66, step:14240, totalSteps:19074, tokensDone:7.47, tokensTotal:10, loss:'3.0349', throughput:'9,499 tok/s' },
+    { date:'Mon · Nov 9, 2026', title:'Past 82 percent', desc:'The current record, from the verified 8:11 AM PST capture. Checkpoint 15,500 saved at 04:52 PST.', percent:82.27, step:15692, totalSteps:19074, tokensDone:8.228, tokensTotal:10, loss:'3.2083', throughput:'9,420 tok/s', latest:true },
+    { date:'Wed · Nov 11, 2026', title:'Blackwell finishes', desc:'Expected completion of the 1B run. The eval gates follow, and what they say gets published as measured.', projected:true }
+  ];
+  var LATEST_RUN=null;
+  DAILY_LOG.forEach(function(e){ if(typeof e.percent==='number') LATEST_RUN=e; });
+  var VERIFIED_RUN={ step:LATEST_RUN.step, totalSteps:LATEST_RUN.totalSteps, percent:LATEST_RUN.percent, tokensDone:LATEST_RUN.tokensDone, tokensTotal:LATEST_RUN.tokensTotal, loss:LATEST_RUN.loss, dateLabel:'LATEST VERIFIED UPDATE · NOV 9, 2026 · ACTUAL RUN RECORD' };
+  (function renderRun(){
+    function fmt(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,','); }
+    var elPct=document.getElementById('live-pct'), elStep=document.getElementById('live-step'), elTok=document.getElementById('live-tokens'), elDate=document.getElementById('live-date'), elLoss=document.getElementById('live-loss');
+    if(elPct) elPct.textContent=VERIFIED_RUN.percent.toFixed(2)+'%';
+    if(elStep) elStep.textContent=fmt(VERIFIED_RUN.step)+' / '+fmt(VERIFIED_RUN.totalSteps);
+    if(elTok) elTok.textContent=VERIFIED_RUN.tokensDone.toFixed(3)+'B / '+VERIFIED_RUN.tokensTotal+'B';
+    if(elLoss) elLoss.textContent=VERIFIED_RUN.loss;
+    if(elDate) elDate.textContent=VERIFIED_RUN.dateLabel;
+    var covered=(VERIFIED_RUN.percent/100)*9;
+    document.querySelectorAll('#livebar .cell i').forEach(function(c,i){ var fill=Math.min(1,Math.max(0,covered-i)); c.style.width=(fill*100)+'%'; });
+    var bar=document.getElementById('livebar');
+    if(bar) bar.setAttribute('aria-label','Training progress bar in Spectrum Cycle colors, currently '+VERIFIED_RUN.percent.toFixed(2)+' percent');
+    var lp=document.getElementById('ladder-pct'); if(lp) lp.textContent=VERIFIED_RUN.percent.toFixed(1)+' percent';
+    var fp=document.getElementById('founder-pct'); if(fp) fp.textContent=VERIFIED_RUN.percent.toFixed(1)+' percent';
+  })();
+
+  /* ---------- Interactive timeline: a sliding scale over the daily log ----------
+     Sliding a mouse or finger along the bar (or tapping, or using the arrow
+     keys) selects the nearest day on the record and shows what happened
+     then, with that day's verified metrics. Markers, fill, and the readout
+     panel are all built from DAILY_LOG above. */
+  (function renderTimeline(){
+    var track=document.getElementById('itl-track');
+    if(!track) return;
+    var fill=document.getElementById('itl-fill'),
+        elDate=document.getElementById('itl-date'),
+        elTitle=document.getElementById('itl-title'),
+        elDesc=document.getElementById('itl-desc'),
+        elMetrics=document.getElementById('itl-metrics');
+    var COLORS=['#2B2A8C','#6338C4','#8E44D6','#B44FB4','#D06A8E','#CE6B4A','#E8834F','#F09A3E','#F5B840'];
+    var n=DAILY_LOG.length, latestIdx=0;
+    DAILY_LOG.forEach(function(e,i){ if(e.latest) latestIdx=i; });
+    function pos(i){ return n>1 ? (i/(n-1))*100 : 0; }
+    function fmtN(x){ return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,','); }
+    var dots=[];
+    DAILY_LOG.forEach(function(e,i){
+      var d=document.createElement('span');
+      d.className='itl-dot'+(e.latest?' today':'');
+      d.style.left=pos(i)+'%';
+      d.style.background=COLORS[i%COLORS.length];
+      track.appendChild(d); dots.push(d);
+    });
+    track.setAttribute('aria-valuemax', String(n-1));
+    var cur=-1;
+    function select(i){
+      i=Math.max(0, Math.min(n-1, i));
+      if(i===cur) return;
+      cur=i;
+      var e=DAILY_LOG[i];
+      dots.forEach(function(d,j){ d.classList.toggle('active', j===i); });
+      if(fill) fill.style.width=pos(i)+'%';
+      elDate.textContent=e.date+(e.latest?' · Latest verified update':(e.projected?' · Expected':''));
+      elTitle.textContent=e.title;
+      elDesc.textContent=e.desc;
+      var chips=[];
+      if(typeof e.percent==='number') chips.push('Training <b>'+e.percent.toFixed(2)+'%</b>');
+      if(typeof e.step==='number') chips.push('Step <b>'+fmtN(e.step)+' / '+fmtN(e.totalSteps)+'</b>');
+      if(typeof e.tokensDone==='number') chips.push('Tokens <b>'+e.tokensDone.toFixed(3).replace(/0+$/,'').replace(/\.$/,'')+'B / '+e.tokensTotal+'B</b>');
+      if(e.loss) chips.push('Loss <b>'+e.loss+'</b>');
+      if(e.throughput) chips.push('Throughput <b>'+e.throughput+'</b>');
+      elMetrics.innerHTML=chips.length?chips.map(function(c){return '<span>'+c+'</span>';}).join(''):'<span>Milestone · no run reading this day</span>';
+      track.setAttribute('aria-valuenow', String(i));
+      track.setAttribute('aria-valuetext', e.date+' · '+e.title);
+    }
+    function fromEvent(ev){
+      var r=track.getBoundingClientRect();
+      var f=(ev.clientX-r.left)/r.width;
+      select(Math.round(Math.max(0, Math.min(1, f))*(n-1)));
+    }
+    track.addEventListener('pointermove', fromEvent, {passive:true});
+    track.addEventListener('pointerdown', function(ev){ fromEvent(ev); buzz(10); if(track.setPointerCapture){ try{ track.setPointerCapture(ev.pointerId); }catch(err){} } });
+    track.addEventListener('keydown', function(ev){
+      if(ev.key==='ArrowRight'||ev.key==='ArrowUp'){ select(cur+1); ev.preventDefault(); }
+      else if(ev.key==='ArrowLeft'||ev.key==='ArrowDown'){ select(cur-1); ev.preventDefault(); }
+      else if(ev.key==='Home'){ select(0); ev.preventDefault(); }
+      else if(ev.key==='End'){ select(n-1); ev.preventDefault(); }
+    });
+    select(latestIdx);
+  })();
+
+  /* ---------- Real Follow the build signup: posts to Zoho Forms in a hidden
+     target frame, so the visitor stays on this page. The frame loading
+     after a submit is the signup landing; only then is success shown. */
+  var pendingForm=null;
+  document.querySelectorAll('form.waitlist-form').forEach(function(f){
+    f.addEventListener('submit', function(){
+      pendingForm=f;
+      var status=f.querySelector('.form-status');
+      if(status){ status.hidden=false; status.classList.remove('error'); status.textContent='Signing up to follow the build…'; }
+      var btn=f.querySelector('button[type="submit"]'); if(btn) btn.disabled=true;
+    });
+  });
+  document.getElementById('zoho-submit-target').addEventListener('load', function(){
+    if(!pendingForm) return; // the frame's first, empty load
+    var f=pendingForm; pendingForm=null;
+    var status=f.querySelector('.form-status');
+    if(status){ status.hidden=false; status.classList.remove('error'); status.textContent='You are following the build. Your signup was received — watch your inbox for the next update from Centralia.'; }
+    var btn=f.querySelector('button[type="submit"]'); if(btn) btn.disabled=false;
+    showToast('You are following the build — signup received.');
+    f.reset();
+  });
+
+  /* ---------- Interactive Spectrum Cycle ---------- */
+  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var COARSE = window.matchMedia('(pointer: coarse)').matches;
+  function buzz(ms){ if(COARSE && navigator.vibrate){ try{ navigator.vibrate(ms); }catch(e){} } }
+  document.addEventListener('click', function(e){ if(e.target.closest('button, .trail a')) buzz(8); }, {passive:true});
+
+  var stage=document.getElementById('ring-stage');
+  if(stage){
+    var svg=document.getElementById('ring-svg'), rotor=document.getElementById('ring-rotor');
+    var states=Array.prototype.slice.call(svg.querySelectorAll('.state'));
+    var readout=document.getElementById('ring-readout');
+    var site=stage.closest('.site');
+    var railDots=site ? Array.prototype.slice.call(site.querySelectorAll('.rail i')) : [];
+    railDots.forEach(function(d){ d.style.transition='transform .25s ease'; });
+    var heroText=stage.closest('.hero-grid2') ? stage.closest('.hero-grid2').firstElementChild : null;
+    var rot=0, scrollDeg=0, mouseDeg=0, px=0, py=0, tpx=0, tpy=0, activeIdx=-1, ringVisible=true;
+
+    function setActive(idx){
+      if(idx===activeIdx) return;
+      activeIdx=idx;
+      states.forEach(function(s,i){ s.classList.toggle('active', i===idx); });
+      railDots.forEach(function(d,i){ d.style.transform = i===idx ? 'scale(1.55)' : 'scale(1)'; });
+      if(idx>=0){
+        var s=states[idx];
+        readout.innerHTML='You are on · <b style="color:'+s.getAttribute('data-hex')+'">'+s.getAttribute('data-name')+' '+s.getAttribute('data-hex')+'</b>';
+      } else {
+        readout.innerHTML='The cycle, live · <b>indigo to amber</b>';
+      }
+    }
+    function angleFromEvent(e){
+      var r=svg.getBoundingClientRect();
+      var dx=(e.clientX-(r.left+r.width/2)), dy=(e.clientY-(r.top+r.height/2));
+      return (Math.atan2(dy,dx)*180/Math.PI + 90 + 360) % 360;
+    }
+    if(site){
+      site.addEventListener('mousemove', function(e){
+        var dir=angleFromEvent(e);
+        if(!REDUCED){
+          mouseDeg = dir * 0.12;
+          var r=site.getBoundingClientRect();
+          tpx = ((e.clientX-r.left)/r.width - .5) * -7;
+          tpy = ((e.clientY-r.top)/r.height - .5) * -5;
+        }
+        var local=(dir - rot + 360) % 360;
+        setActive(Math.round(local/40) % 9);
+      }, {passive:true});
+      site.addEventListener('mouseleave', function(){ setActive(-1); tpx=0; tpy=0; });
+    }
+    states.forEach(function(s,i){
+      s.addEventListener('pointerdown', function(){
+        setActive(i); buzz(14);
+        if(!REDUCED){ mouseDeg += 40; }
+      });
+    });
+    window.addEventListener('scroll', function(){ scrollDeg = (window.scrollY * 0.03) % 360; }, {passive:true});
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(en){ ringVisible = en[0].isIntersecting; }, {threshold:.05}).observe(stage);
+    }
+    if(!REDUCED){
+      (function loop(){
+        if(ringVisible){
+          var target = scrollDeg + mouseDeg;
+          rot += (target - rot) * 0.065;
+          rotor.setAttribute('transform','rotate('+rot.toFixed(2)+' 600 600)');
+          px += (tpx-px)*0.06; py += (tpy-py)*0.06;
+          if(heroText) heroText.style.transform='translate('+px.toFixed(1)+'px,'+py.toFixed(1)+'px)';
+        }
+        requestAnimationFrame(loop);
+      })();
+    }
+  }
+})();
+</script>
+</body>
+</html>
